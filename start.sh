@@ -2,5 +2,6 @@
 # Using alias.sh
 # dcm up -d
 
-docker-compose -f minecraft.yml up -d
+unlock.sh
+docker-compose -f minecraft.yml start
 

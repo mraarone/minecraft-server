@@ -20,8 +20,10 @@ services:
     image: itzg/minecraft-server:java17
     ports:
       - 25565:25565
+      - 28016:28016
     environment:
-      MEMORY: "2G"
+#      LEVEL: "vanilla"
+#      MEMORY: "2G"
       TYPE: "VANILLA"
       ICON: "http://clipart-library.com/new_gallery/57-579791_minecraft-steve-alabama.png"
       MOTD: "Vanilla Season 1: Elijah's World!"
@@ -30,9 +32,78 @@ services:
       ENABLE_RCON: "true"
       RCON_PASSWORD: ${RCON_PASSWORD}
       RCON_PORT: 28016
+    tty: true
+    stdin_open: true
     volumes:
     - ${MINECRAFT_HOME}/data/vanilla:/data
     restart: always
+
+  oneblockskyblock:
+    image: itzg/minecraft-server:java17
+    ports:
+      - 25566:25565
+      - 28017:28016
+    environment:
+#      LEVEL: "oneblock"
+#      MEMORY: "2G"
+      TYPE: "VANILLA"
+      ICON: "http://clipart-library.com/new_gallery/57-579791_minecraft-steve-alabama.png"
+      MOTD: "Vanilla Season 2: OneBlock-SkyBlock"
+      MODE: "survival"
+      EULA: "TRUE"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: ${RCON_PASSWORD}
+      RCON_PORT: 28016
+    tty: true
+    stdin_open: true
+    volumes:
+    - ${MINECRAFT_HOME}/data/oneblockskyblock:/data
+    restart: always
+
+  flatworld:
+    image: itzg/minecraft-server:java17
+    ports:
+      - 25567:25565
+      - 28018:28016
+    environment:
+#      LEVEL: "flatworld"
+#      MEMORY: "2G"
+      TYPE: "VANILLA"
+      ICON: "http://clipart-library.com/new_gallery/57-579791_minecraft-steve-alabama.png"
+      MOTD: "Vanilla Season 3: Flatworld"
+      MODE: "creative"
+      EULA: "TRUE"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: ${RCON_PASSWORD}
+      RCON_PORT: 28016
+    tty: true
+    stdin_open: true
+    volumes:
+    - ${MINECRAFT_HOME}/data/flatworld:/data
+    restart: always
+
+  creativeexploration:
+    image: itzg/minecraft-server:java17
+    ports:
+      - 25568:25565
+      - 28019:28016
+    environment:
+#      LEVEL: "creativeexploration"
+#      MEMORY: "2G"
+      TYPE: "VANILLA"
+      ICON: "http://clipart-library.com/new_gallery/57-579791_minecraft-steve-alabama.png"
+      MOTD: "Vanilla Season 3: Creative Exploration"
+      MODE: "creative"
+      EULA: "TRUE"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: ${RCON_PASSWORD}
+      RCON_PORT: 28016
+    tty: true
+    stdin_open: true
+    volumes:
+    - ${MINECRAFT_HOME}/data/creativeexploration:/data
+    restart: always
+
 #    #tinyblueworld:
 #    #image: itzg/minecraft-server:java16
 #    #ports:
