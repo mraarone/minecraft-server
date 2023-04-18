@@ -16,14 +16,16 @@ services:
   #  volumes:
   #  - ${HOME}/data/datacraft:/data
   #  restart: always
+
   vanilla:
     image: itzg/minecraft-server:java17
+    hostname: vanilla
     ports:
       - 25565:25565
       - 28016:28016
     environment:
 #      LEVEL: "vanilla"
-#      MEMORY: "2G"
+      MEMORY: "2G"
       TYPE: "VANILLA"
       ICON: "http://clipart-library.com/new_gallery/57-579791_minecraft-steve-alabama.png"
       MOTD: "Vanilla Season 1: Elijah's World!"
@@ -38,71 +40,74 @@ services:
     - ${MINECRAFT_HOME}/data/vanilla:/data
     restart: always
 
-  oneblockskyblock:
-    image: itzg/minecraft-server:java17
-    ports:
-      - 25566:25565
-      - 28017:28016
-    environment:
-#      LEVEL: "oneblock"
-#      MEMORY: "2G"
-      TYPE: "VANILLA"
-      ICON: "http://clipart-library.com/new_gallery/57-579791_minecraft-steve-alabama.png"
-      MOTD: "Vanilla Season 2: OneBlock-SkyBlock"
-      MODE: "survival"
-      EULA: "TRUE"
-      ENABLE_RCON: "true"
-      RCON_PASSWORD: ${RCON_PASSWORD}
-      RCON_PORT: 28016
-    tty: true
-    stdin_open: true
-    volumes:
-    - ${MINECRAFT_HOME}/data/oneblockskyblock:/data
-    restart: always
+#  oneblockskyblock:
+#    image: itzg/minecraft-server:java17
+#    ports:
+#      - 25566:25565
+#      - 28017:28016
+#    environment:
+#      INITIAL_DELAY: 200
+##      LEVEL: "oneblock"
+##      MEMORY: "2G"
+#      TYPE: "VANILLA"
+#      ICON: "http://clipart-library.com/new_gallery/57-579791_minecraft-steve-alabama.png"
+#      MOTD: "Vanilla Season 2: OneBlock-SkyBlock"
+#      MODE: "survival"
+#      EULA: "TRUE"
+#      ENABLE_RCON: "true"
+#      RCON_PASSWORD: ${RCON_PASSWORD}
+#      RCON_PORT: 28016
+#    tty: true
+#    stdin_open: true
+#    volumes:
+#    - ${MINECRAFT_HOME}/data/oneblockskyblock:/data
+#    restart: always
 
-  flatworld:
-    image: itzg/minecraft-server:java17
-    ports:
-      - 25567:25565
-      - 28018:28016
-    environment:
-#      LEVEL: "flatworld"
-#      MEMORY: "2G"
-      TYPE: "VANILLA"
-      ICON: "http://clipart-library.com/new_gallery/57-579791_minecraft-steve-alabama.png"
-      MOTD: "Vanilla Season 3: Flatworld"
-      MODE: "creative"
-      EULA: "TRUE"
-      ENABLE_RCON: "true"
-      RCON_PASSWORD: ${RCON_PASSWORD}
-      RCON_PORT: 28016
-    tty: true
-    stdin_open: true
-    volumes:
-    - ${MINECRAFT_HOME}/data/flatworld:/data
-    restart: always
+#  flatworld:
+#    image: itzg/minecraft-server:java17
+#    ports:
+#      - 25567:25565
+#      - 28018:28016
+#    environment:
+#      INITIAL_DELAY: 400
+##      LEVEL: "flatworld"
+##      MEMORY: "2G"
+#      TYPE: "VANILLA"
+#      ICON: "http://clipart-library.com/new_gallery/57-579791_minecraft-steve-alabama.png"
+#      MOTD: "Vanilla Season 3: Flatworld"
+#      MODE: "creative"
+#      EULA: "TRUE"
+#      ENABLE_RCON: "true"
+#      RCON_PASSWORD: ${RCON_PASSWORD}
+#      RCON_PORT: 28016
+#    tty: true
+#    stdin_open: true
+#    volumes:
+#    - ${MINECRAFT_HOME}/data/flatworld:/data
+#    restart: always
 
-  creativeexploration:
-    image: itzg/minecraft-server:java17
-    ports:
-      - 25568:25565
-      - 28019:28016
-    environment:
-#      LEVEL: "creativeexploration"
-#      MEMORY: "2G"
-      TYPE: "VANILLA"
-      ICON: "http://clipart-library.com/new_gallery/57-579791_minecraft-steve-alabama.png"
-      MOTD: "Vanilla Season 3: Creative Exploration"
-      MODE: "creative"
-      EULA: "TRUE"
-      ENABLE_RCON: "true"
-      RCON_PASSWORD: ${RCON_PASSWORD}
-      RCON_PORT: 28016
-    tty: true
-    stdin_open: true
-    volumes:
-    - ${MINECRAFT_HOME}/data/creativeexploration:/data
-    restart: always
+#  creativeexploration:
+#    image: itzg/minecraft-server:java17
+#    ports:
+#      - 25568:25565
+#      - 28019:28016
+#    environment:
+#      INITIAL_DELAY: 600
+##      LEVEL: "creativeexploration"
+##      MEMORY: "2G"
+#      TYPE: "VANILLA"
+#      ICON: "http://clipart-library.com/new_gallery/57-579791_minecraft-steve-alabama.png"
+#      MOTD: "Vanilla Season 3: Creative Exploration"
+#      MODE: "creative"
+#      EULA: "TRUE"
+#      ENABLE_RCON: "true"
+#      RCON_PASSWORD: ${RCON_PASSWORD}
+#      RCON_PORT: 28016
+#    tty: true
+#    stdin_open: true
+#    volumes:
+#    - ${MINECRAFT_HOME}/data/creativeexploration:/data
+#    restart: always
 
 #    #tinyblueworld:
 #    #image: itzg/minecraft-server:java16
@@ -120,6 +125,7 @@ services:
 #    #volumes:
 #    #- ${HOME}/data/tinyblueworld:/data
 #    #restart: always
+
 #  sambashare:
 #    image: dperson/samba
 #    ports:
@@ -132,25 +138,28 @@ services:
 #    volumes:
 #      - ${MINECRAFT_HOME}/data/:/mount
 #    command: '-s "Minecraft Data;/mount;yes;no;no;${SMB_USER}" -u "${SMB_USER};${SMB_PASS}" -p'
-#  backup:
-#    image: itzg/mc-backup
-#    # This needs to be set because backups use hostnames
-#    hostname: minecraftbackup
-#    command: /bin/bash
-#    restart: always
-#    environment:
-#      BACKUP_METHOD: restic
-#      BACKUP_INTERVAL: "3h"
-#      INITIAL_DELAY: 500
-#      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-#      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
-#      AWS_DEFAULT_REGION: us-west-2
-#      RESTIC_REPOSITORY: ${RESTIC_REPOSITORY}
-#      RESTIC_FORGET_ARGS: ${RESTIC_FORGET_ARGS}
-#      RESTIC_PASSWORD: ${RESTIC_PASSWORD}
-#      RCON_PASSWORD: ${RCON_PASSWORD}
-#      RCON_PORT: 28016
-#      RCON_HOST: datacraft
-#    volumes:
-#      - ${MINECRAFT_HOME}/data:/data:ro
-#      - ${MINECRAFT_HOME}/recover:/recover
+
+  backups:
+    image: itzg/mc-backup
+    # This needs to be set because backups use hostnames
+    hostname: backups
+    command: loop
+    restart: always
+    environment:
+      EULA: "TRUE"
+      BACKUP_METHOD: restic
+      BACKUP_INTERVAL: "3h"
+      INITIAL_DELAY: 500
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${AWS_REGION}
+      RESTIC_REPOSITORY: ${RESTIC_REPOSITORY}
+      RESTIC_FORGET_ARGS: ${RESTIC_FORGET_ARGS}
+      RESTIC_PASSWORD: ${RESTIC_PASSWORD}
+      RCON_PASSWORD: ${RCON_PASSWORD}
+      RCON_PORT: 28016
+      RCON_HOST: vanilla
+    volumes:
+      - ${MINECRAFT_HOME}/data:/data:ro
+      - ${MINECRAFT_HOME}/backups:/backups
+      - ${MINECRAFT_HOME}/recover:/recover
